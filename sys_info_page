@@ -81,15 +81,19 @@ filename=
 while [[ -n $1 ]]; do
 
 	case $1 in
-		-f | --file)              shift
+		-f | --file)
+                              shift
 															filename=$1
 															;;
-		-i | --interactive)       interactive=1
+		-i | --interactive)
+                              interactive=1
 															;;
-		-h | --help)              usage
+		-h | --help)
+                              usage
 															exit
 															;;
-		*)                        usage >&2
+		*)
+                              usage >&2
 															exit 1
 															;;
 	esac
@@ -110,12 +114,15 @@ if [[ -n $interactive ]]; then
 			read -p "'$filename' exists. Overwrite? [y/n/q] > "
 
 			case $REPLY in
-				Y|y)      break
+				Y|y)
+                  break
 									;;
-				Q|q)      echo "Program terminated."
+				Q|q)
+                  echo "Program terminated."
 									exit
 									;;
-				*)        continue
+				*)
+                  continue
 									;;
 			esac
 
