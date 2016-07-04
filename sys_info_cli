@@ -18,38 +18,35 @@ while [[ $REPLY != 0 ]]; do
 
 	read -p "Enter selection [0-3] >> "
 
-	if [[ $REPLY =~ ^[0-3]$ ]]; then
+	case $REPLY in
 
-		if [[ $REPLY == 1 ]]; then
-			echo "Hostname: $HOSTNAME"
-			uptime
-			sleep $DELAY
-		fi
+		0)	echo "Program Terminated"
+				exit
+				;;
 
-		if [[ $REPLY == 2 ]]; then
-			df -h
-			sleep $DELAY
-		fi
+		1)	echo "Hostname: $HOSTNAME"
+				uptime
+				sleep $DELAY
+				;;
 
-		if [[ $REPLY == 3 ]]; then
+		2)	df -h
+				sleep $DELAY
+				;;
 
-			if [[ $(id -u) -eq 0 ]]; then
-				echo "Home Space Utilization (All Users)"
-				du -sh /Users/*
-			else
-				echo "Home Space Utilization ($USER)"
-				du-sh $HOME
-			fi
-			sleep $DELAY
+		3)	if [[ $(id -u) -eq 0 ]]; then
+					echo "Home Space Utilization (All Users)"
+					du -sh /Users/*
+				else
+					echo "Home Space Utilization ($USER)"
+					du-sh $HOME
+				fi
+				sleep $DELAY
+				;;
 
-		fi
+		*)	echo "Invalid entry"
+				sleep $DELAY
+				;;
 
-	else
-
-		echo "Invalid entry."
-		sleep $DELAY
-
-	fi
+	esac
 
 done
-echo "Program terminated."
